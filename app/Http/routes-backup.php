@@ -12,14 +12,15 @@
 */
 
 /*这种方式是路由直接访问view*/
-/*Route::get('/', function () { 
+Route::get('/', function () { 
     return view('welcome');
 });
-Route::get('/view', 'ViewController@index');
-*/
-//2、Route::get('test', 'IndexController@index'); //控制器路由
 
-Route::get('index', 'Admin\IndexController@index');
+Route::get('/view', 'ViewController@index');
+
+//2、Route::get('test', 'IndexController@index'); //控制器路由
+Route::get('test', 'Admin\IndexController@index');
+
 
 
 /****后台路由****/

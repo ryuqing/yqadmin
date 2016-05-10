@@ -11,12 +11,7 @@ class IndexController extends Controller
 {
 	public function index()
 	{
-		echo 'AdminIndex'; 
+		$this->view('index');
 	}	
 
-	public function login()
-	{
-		session(['admin' => 1]);
-		echo '<h1>login</h>';
-	}
 }
