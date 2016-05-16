@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta charset="utf-8" />
-		<title>控制台-{$Think.CONFIG.title}</title>
-
-		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
-		<meta name="description" content="{$Think.CONFIG.description}" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-		<include file="Public/head" />
-
-	</head>
-
-	<body class="no-skin">
-		<include file="Public/header" />
+@extends('layouts.admin')
+@section('content')
+	@include('layouts.header')
 		<div class="main-container" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
 			</script>
 
-			<include file="Public/sidebar" />
+	@include('layouts.sidebar')
 			<div class="main-content">
 				<div class="main-content-inner">
 					<!-- #section:basics/content.breadcrumbs -->
@@ -31,7 +18,7 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="{:U('index/index')}">首页</a>
+								<a href="">首页</a>
 							</li>
 
 							<li>
@@ -64,11 +51,11 @@
 
 													<div class="panel-collapse collapse in" id="sysinfo">
 														<div class="panel-body">
-															<p>PHP版本：<?php echo PHP_VERSION ?>，MySQL版本：{$mysql}</p>
+															<p>PHP版本：<?php echo PHP_VERSION ?>，MySQL版本：</p>
 															<p>服务器：<?php echo php_uname('s');?></p>
 															<p>PHP运行方式：<?php echo php_sapi_name();?></p>
 															<p>服务器IP：<?php echo GetHostByName($_SERVER['SERVER_NAME']);?></p>
-															<p>程序版本：<?php echo THINK_VERSION ?>&nbsp;&nbsp;<a href="javascript:;" id="update">检查更新</a>&nbsp;&nbsp;<span id="upmsg"></span></p>
+															<p>程序版本：&nbsp;&nbsp;<a href="javascript:;" id="update">检查更新</a>&nbsp;&nbsp;<span id="upmsg"></span></p>
 
 														</div>
 													</div>
@@ -93,7 +80,7 @@
 													</div>
 												</div>
 									</div>
-									<div  id="Facebook-info" class="accordion-style1 panel-group col-sm-4">
+									<div id="Facebook-info" class="accordion-style1 panel-group col-sm-4">
 												<div class="panel panel-default">
 													<div class="panel-heading">
 														<h4 class="panel-title">
@@ -196,7 +183,7 @@
 				$("#upmsg").addClass("ace-icon fa fa-refresh fa-spin blue");
 				$.ajax({
 					type: 'GET',
-					url: '{$Think.CONFIG.UPDATE_URL}?v=<?php echo THINK_VERSION ?>&callback=?',
+					url: '{$Think.CONFIG.UPDATE_URL}?v=<?php echo '程序版本' ?>&callback=?',
 					success :function(json){
 						if(json.result=='no'){
 							$("#upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
@@ -235,5 +222,4 @@
 		
 
 		</script>
-	</body>
-</html>
+@endsection

@@ -11,7 +11,7 @@ class IndexController extends Controller
 {
 	public function index()
 	{
-		$this->view('index');
+		return view('admin/index/index');
 	}	
 
 }

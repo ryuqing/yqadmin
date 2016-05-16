@@ -19,7 +19,7 @@ Route::get('/view', 'ViewController@index');
 */
 //2、Route::get('test', 'IndexController@index'); //控制器路由
 
-Route::get('index', 'Admin\IndexController@index');
+Route::get('index', 'Admin\indexController@index');
 
 
 /****后台路由****/
