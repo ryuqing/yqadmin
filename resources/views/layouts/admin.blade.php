@@ -14,7 +14,8 @@
    		<script type="text/javascript" src="{{asset('resources/views/admin/style/js/ace-extra.js')}}"></script>
 
 </head>
-<body>
+<body class="no-skin">
 @yield('content')
+@include('layouts.footerjs')
 </body>
 </html>
