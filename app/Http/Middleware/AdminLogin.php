@@ -15,8 +15,7 @@ class AdminLogin
      */
     public function handle($request, Closure $next)
     {
-        session(['admin' => null]);
-        if(!session('admin'))
+        if(!session('user'))
         {
             return redirect('admin/login');
         }

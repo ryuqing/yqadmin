@@ -11,12 +11,15 @@
 |
 */
 
-/**临时路由**/
 
+
+/**后台路由**/
 Route::get('index', 'Admin\IndexController@index');
+Route::any('admin/login', 'Admin\LoginController@login'); //把login独立出来
+Route::get('admin/logout', 'Admin\LoginController@logout'); //
+Route::get('admin/code', 'Admin\LoginController@code');
 
-/****后台路由****/
-Route::group(['middleware' => ['web']], function() {
-	Route::any('admin/login', 'Admin\LoginController@login'); //把login独立出来
-	Route::get('admin/code', 'Admin\LoginController@code');
+/****后台路由群组****/
+Route::group(['middleware' => ['web','admin.login']], function() {
+	Route::get('/admin/index', 'Admin\IndexController@index');
 });

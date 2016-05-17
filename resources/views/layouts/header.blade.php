@@ -71,7 +71,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="{:U('logout/index')}">
+									<a href="{{url('admin/logout')}}">
 										<i class="ace-icon fa fa-power-off"></i>
 										退出
 									</a>

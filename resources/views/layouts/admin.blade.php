@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="{{asset('resources/views/admin/style/css/ace-fonts.css')}}">
 		<link rel="stylesheet" href="{{asset('resources/views/admin/style/css/ace.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
    		<script type="text/javascript" src="{{asset('resources/views/admin/style/js/ace-extra.js')}}"></script>
-
 </head>
 <body class="no-skin">
 @yield('content')

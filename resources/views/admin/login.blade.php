@@ -20,8 +20,7 @@
 				<div class="row">
 					<div class="col-sm-10 col-sm-offset-1">
 						<div class="login-container">
-							<div class="space-6"></div> 
-
+							<div class="space-6"></div>
 							<div class="position-relative">
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
@@ -35,6 +34,9 @@
 
 											<form action="" method="post">
 												{{csrf_field()}}
+													@if(session('msg'))
+													<label class="block clearfix" style="color:red;">{{session('msg')}}</label>
+													@endif
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="text" class="form-control" name="user" placeholder="用户名" />
