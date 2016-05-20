@@ -11,8 +11,8 @@
 |
 */
 
-
-
+Route::get('dbtest', 'Dbtest@index');
+Route::get('inilze', 'Admin\ComController@_initialize');
 /**后台路由**/
 Route::get('index', 'Admin\IndexController@index');
 Route::any('admin/login', 'Admin\LoginController@login'); //把login独立出来

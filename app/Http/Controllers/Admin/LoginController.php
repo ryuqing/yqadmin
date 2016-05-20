@@ -18,7 +18,7 @@ class LoginController extends ComController
 
             $code = new \Code;
             $_code = $code->get();
-            if(strtoupper($input['verify'])!=$_code){
+            if(strtoupper($input['verify'])!=$_code) {
                 return back()->with('msg','验证码错误');
             }
             $user = User::first();
@@ -30,13 +30,14 @@ class LoginController extends ComController
         }else{
             return view('admin.login');
         }
-
     }
 
-    public function  logout(){
+    public function logout()
+    {
         session(['user' => null ]);
         return redirect('admin/index');
     }
+
     public function code()
     {
         $code = new \Code;
