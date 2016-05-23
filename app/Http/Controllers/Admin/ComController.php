@@ -26,6 +26,7 @@ class ComController extends Controller
         $menu = $this->switch_array($menu);
 
         $menu = $this->getMenu($menu);
+        //print_r($menu);
         view()->share('menus', $menu);
     }
 

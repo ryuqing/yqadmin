@@ -22,4 +22,5 @@ Route::get('admin/code', 'Admin\LoginController@code');
 /****后台路由群组****/
 Route::group(['middleware' => ['web','admin.login']], function() {
 	Route::get('/admin/index', 'Admin\IndexController@index');
+	Route::get('/admin/menu/index', 'Admin\MenuController@index');
 });

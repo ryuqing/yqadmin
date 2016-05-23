@@ -41,7 +41,7 @@ class LoginController extends ComController
     public function code()
     {
         $code = new \Code;
-        $code->make();
+        return $code->make();
     }
 
 }
