@@ -39,16 +39,16 @@
 											</tr>
 										</thead>
 										<tbody>
-										<volist name="list" id="val">
+										@foreach ($list as $list)
 											<tr>
 												<td class="center">
 													<input class="ids" type="checkbox" name="ids[]" value="{$val['id']}">
 												</td>
-												<td>{$val['title']}</td>
-												<td>{$val['name']}</td>
-												<td><i class="{$val.icon}"></i></td>
-												<td class="center"><if condition="$val.islink eq 1">显示<else />隐藏</if></td>
-												<td>{$val['o']}</td>
+												<td>{{$list['title']}}</td>
+												<td>{{$list['name']}}</td>
+												<td><i class="{{$list['icon']}}"></i></td>
+												<td class="center">@if($list['islink'] == 1)显示@else隐藏@endif</td>
+												<td>{{$list['o']}}</td>
 												<td class="center"><a href="{:U('edit')}?id={$val['id']}">修改</a>&nbsp;<a class="del" href="javascript:;" val="{:U('del')}?ids={$val['id']}" title="删除">删除</a></td>
 											</tr>
 											<notempty name="val.children">
@@ -81,7 +81,7 @@
 												 </notempty>
 												</volist>
 											</notempty>
-										</volist>
+										@endforeach
 										</tbody>
 									</table>
 									</form>

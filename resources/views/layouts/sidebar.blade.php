@@ -43,7 +43,7 @@
 						   <ul class="submenu">
 						   	@if(isset($menu['children']))
 						   	@foreach ($menu['children'] as $submenu)
-						    <li> <a href="{{$submenu['name']}}"> <i class="menu-icon fa fa-user"></i> {{$submenu['title']}} </a> <b class="arrow"></b> </li>
+						    <li> <a href="{{url($submenu['name']) }}"> <i class="menu-icon fa fa-user"></i> {{$submenu['title']}} </a> <b class="arrow"></b> </li>
 						    @endforeach 
 						    @endif 
 						   </ul>
