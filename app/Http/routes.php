@@ -23,4 +23,5 @@ Route::get('admin/code', 'Admin\LoginController@code');
 Route::group(['middleware' => ['web','admin.login']], function() {
 	Route::get('/admin/index', 'Admin\IndexController@index');
 	Route::get('/admin/menu/index', 'Admin\MenuController@index');
+	Route::get('/admin/menu/edit', 'Admin\MenuController@edit');
 });

@@ -15,7 +15,13 @@ class MenuController extends ComController
 
         $list = $this->switch_array($list);
         $list = $this->getMenu($list);
-
+        //print_r($list);
         return view('admin.menu.index')->with('list', $list);
+    }
+
+    public function edit()
+    {
+    	$id = $_GET['id'];
+    	return view('admin.menu.edit')->with('id', $id);
     }
 }
