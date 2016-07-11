@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta charset="utf-8" />
-		<title>{$current['title']}-{$Think.CONFIG.title}</title>
-
-		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
-		<meta name="description" content="{$Think.CONFIG.description}" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
-		<include file="Public/head" />
-   </head>
-
-	<body class="no-skin">
-		<include file="Public/header" />
+@extends('layouts.admin')
+@section('content')
+	@include('layouts.header')
 		<div class="main-container" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
 			</script>
 
-			<include file="Public/sidebar" />
+			@include('layouts.sidebar')
 			<div class="main-content">
 				<div class="main-content-inner">
 					<!-- #section:basics/content.breadcrumbs -->
@@ -36,16 +23,17 @@
 									<form class="form-horizontal" action="{:U('update')}" method="post">
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 上级菜单 </label>
-										<input name="id" value="{$currentmenu.id}" type="hidden">
+										<input name="id" value="{{$cateInfo->id}}" type="hidden">
 										<div class="col-sm-9">
 										<select id="pid" name="pid" class="rcol-xs-10 col-sm-5">
-												<option value="0" <if condition="$currentmenu.pid eq 0">selected="selected"</if>>顶级菜单</option>
-											<volist name="option" id="v">
-												<option value="{$v.id}"  <if condition="$currentmenu.pid eq $v['id']">selected="selected"</if>>{$v['title']}</option>
+												<option value="0" @if(($cateInfo->pid) == 0)selected="selected" @endif>顶级菜单</option>
+											@foreach($menuTree as $menuTree)
+												<option value="{{$menuTree['id']}}"  @if(($cateInfo->pid) == $menuTree['id'])selected="selected" @endif>{$menuTree['title']}</option>
 												<volist name="v.children" id="vv">
-												<option value="{$vv.id}" <if condition="$currentmenu.pid eq $vv['id']">selected="selected"</if>>&nbsp;&nbsp;┗━{$vv['title']}</option>
-												</volist>
-											</volist>
+												@foreach($menuTree['children'] as $childMenu)
+												<option value="{{$childMenu['id']}}" @if(($cateInfo->pid) == $childMenu['id'])selected="selected" @endif>>&nbsp;&nbsp;┗━{$childMenu['title']}</option>
+												@endforeach
+											@endforeach
 										</select>
 										<span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle"></span>
@@ -56,7 +44,7 @@
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 菜单名称 </label>
 										<div class="col-sm-9">
-											<input type="text" name="title" id="title" class="rcol-xs-10 col-sm-5" value="{$currentmenu.title}">
+											<input type="text" name="title" id="title" class="rcol-xs-10 col-sm-5" value="{{$cateInfo->title}}">
 											<span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle"></span>
 											</span>
@@ -67,7 +55,7 @@
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 链接 </label>
 										<div class="col-sm-9">
-											<input type="text" name="name" id="name" placeholder="链接，如：Index/index" class="col-xs-10 col-sm-5" value="{$currentmenu.name}">
+											<input type="text" name="name" id="name" placeholder="链接，如：Index/index" class="col-xs-10 col-sm-5" value="{{$cateInfo->name}}">
 											<span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle"></span>
 											</span>
@@ -78,7 +66,7 @@
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> ICON图标 </label>
 										<div class="col-sm-9">
-											<input type="text" name="icon" id="icon" placeholder="ICON图标" class="col-xs-10 col-sm-5" value="{$currentmenu.icon}">
+											<input type="text" name="icon" id="icon" placeholder="ICON图标" class="col-xs-10 col-sm-5" value="{{$cateInfo->icon}}">
 											<span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle"></span>
 											</span>
@@ -89,7 +77,7 @@
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 显示状态 </label>
 										<div class="control-label no-padding-left col-sm-1">
 											<label>
-												<input name="islink" id="islink" <if condition="$currentmenu.islink eq 1">checked="checked"</if> value="1" class="ace ace-switch ace-switch-2" type="checkbox" />
+												<input name="islink" id="islink" @if(($cateInfo->islink) == 1)checked="checked" @endif value="1" class="ace ace-switch ace-switch-2" type="checkbox" />
 												<span class="lbl"></span>
 											</label>
 										</div>
@@ -101,7 +89,7 @@
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 排序 </label>
 										<div class="col-sm-9">
-											<input type="text" name="o" id="o" placeholder="" class="col-xs-10 col-sm-5" value="{$currentmenu.o}">
+											<input type="text" name="o" id="o" placeholder="" class="col-xs-10 col-sm-5" value="{{$cateInfo->o}}">
 											<span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle">越小越靠前</span>
 											</span>
@@ -111,7 +99,7 @@
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 页面提示</label>
 										<div class="col-sm-9">
-											<textarea name="tips" id="tips" placeholder="页面提示" class="col-xs-10 col-sm-5" rows="5">{$currentmenu.tips}</textarea>
+											<textarea name="tips" id="tips" placeholder="页面提示" class="col-xs-10 col-sm-5" rows="5">{{$cateInfo->tips}}</textarea>
 											<span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle"></span>
 											</span>
@@ -175,5 +163,4 @@
 		})
 		</script>
 
-	</body>
-</html>
+@endsection

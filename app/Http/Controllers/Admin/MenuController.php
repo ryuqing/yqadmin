@@ -22,6 +22,10 @@ class MenuController extends ComController
     public function edit()
     {
     	$id = $_GET['id'];
-    	return view('admin.menu.edit')->with('id', $id);
+        $thisMenuTree = DB::table('auth_rule')->orderBy('o', 'asc')->get();
+        $thisMenuTree = $this->switch_array($thisMenuTree);
+        $thisMenuTree = $this->getMenu($thisMenuTree);
+        $cateInfo = DB::table('auth_rule')->where('id', $id)->first();
+    	return view('admin.menu.edit')->with('cateInfo', $cateInfo);
     }
 }

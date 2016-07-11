@@ -13,6 +13,7 @@
 
 Route::get('dbtest', 'Dbtest@index');
 Route::get('inilze', 'Admin\ComController@_initialize');
+
 /**后台路由**/
 Route::get('index', 'Admin\IndexController@index');
 Route::any('admin/login', 'Admin\LoginController@login'); //把login独立出来
@@ -24,4 +25,8 @@ Route::group(['middleware' => ['web','admin.login']], function() {
 	Route::get('/admin/index', 'Admin\IndexController@index');
 	Route::get('/admin/menu/index', 'Admin\MenuController@index');
 	Route::get('/admin/menu/edit', 'Admin\MenuController@edit');
+
+	//增删改查不可能一个一个路由写，所以用资源路由
+	
+
 });
