@@ -27,12 +27,13 @@
 										<div class="col-sm-9">
 										<select id="pid" name="pid" class="rcol-xs-10 col-sm-5">
 												<option value="0" @if(($cateInfo->pid) == 0)selected="selected" @endif>顶级菜单</option>
-											@foreach($menuTree as $menuTree)
-												<option value="{{$menuTree['id']}}"  @if(($cateInfo->pid) == $menuTree['id'])selected="selected" @endif>{$menuTree['title']}</option>
-												<volist name="v.children" id="vv">
-												@foreach($menuTree['children'] as $childMenu)
-												<option value="{{$childMenu['id']}}" @if(($cateInfo->pid) == $childMenu['id'])selected="selected" @endif>>&nbsp;&nbsp;┗━{$childMenu['title']}</option>
-												@endforeach
+											@foreach($menuTree as $list)
+												<option value="{{$list['id']}}"  @if(($cateInfo->pid) == $list['id'])selected="selected" @endif>{{$list['title']}}</option>
+												@if(isset($list['children']))
+													@foreach($list['children'] as $childMenu)
+													<option value="{{$childMenu['id']}}" @if(($cateInfo->pid) == $childMenu['id'])selected="selected" @endif>&nbsp;&nbsp;┗━{{$childMenu['title']}}</option>
+													@endforeach
+												@endif
 											@endforeach
 										</select>
 										<span class="help-inline col-xs-12 col-sm-7">

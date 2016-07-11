@@ -30,6 +30,15 @@ Route::get('user', ['as' => 'profile', function () {
     return '<h1>命名路由</h1>';
 }]);
 
+//3.1命名控制器路由
+Route::get('test', [
+	'as' => 'profile', 'uses' => 'Admin\IndexController@index';
+]);
+//也可以简写成这样
+Route::get('test', 'Admin\IndexController@index')->name('profile');
+
+
+
 //4、路由群组 访问uri = /admin/index
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['web', 'admin.login']], function() {
 	Route::get('index', 'IndexController@index');
