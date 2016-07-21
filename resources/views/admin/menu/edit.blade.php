@@ -20,7 +20,8 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-									<form class="form-horizontal" action="{:U('update')}" method="post">
+									<form class="form-horizontal" action="{{url('admin/menu/store')}}" method="post">
+									{{csrf_field()}}
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 上级菜单 </label>
 										<input name="id" value="{{$cateInfo->id}}" type="hidden">

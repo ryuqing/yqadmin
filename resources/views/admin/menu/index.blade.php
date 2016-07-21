@@ -22,7 +22,7 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<div class="row">
 								<div class="cf">
-									<a class="btn btn-info" href="{:U('add')}" value="">新增</a>
+									<a class="btn btn-info" href="{{url('admin/menu/add')}}" value="">新增</a>
 								</div>
 								<div class="space-4"></div>
 									<form id="form" method="post" action="{:U('del')}">
@@ -49,7 +49,7 @@
 												<td><i class="{{$list['icon']}}"></i></td>
 												<td class="center">@if($list['islink'] == 1)显示@else隐藏@endif</td>
 												<td>{{$list['o']}}</td>
-												<td class="center"><a href="edit?id={{$list['id']}}">修改</a>&nbsp;<a class="del" href="javascript:;" val="{:U('del')}?ids={$list['id']}" title="删除">删除</a></td>
+												<td class="center"><a href="edit?id={{$list['id']}}">修改</a>&nbsp;<a class="del" href="javascript:;" val="{{url('admin/menu/del')}}?ids={$list['id']}" title="删除">删除</a></td>
 											</tr>
 											@if(isset($list['children']))
 												@foreach ($list['children'] as $v)
@@ -62,7 +62,7 @@
 													<td><i class="{{$v['icon']}}"></i></td>
 													<td class="center">@if($v['islink'] == 1)显示@else隐藏@endif</td>
 													<td>{{$v['o']}}</td>
-													<td class="center"><a href="edit?id={{$v['id']}}">修改</a>&nbsp;<a class="del" href="javascript:;" val="U('del')?ids={{$v['id']}}" title="删除">删除</a></td>
+													<td class="center"><a href="edit?id={{$v['id']}}">修改</a>&nbsp;<a class="del" href="javascript:;" val="{{url('admin/menu/del')}}?ids={{$v['id']}}" title="删除">删除</a></td>
 												</tr>
 												@if(isset($v['children']))
 													@foreach($v['children'] as $vv)
@@ -75,7 +75,7 @@
 														<td><i class="{{$vv['icon']}}"></i></td>
 														<td class="center">@if($v['islink'] == 1)显示@else隐藏@endif</td>
 														<td>{{$vv['o']}}</td>
-														<td class="center"><a href="edit?id={{$vv['id']}}">修改</a>&nbsp;<a class="del" href="javascript:;" val="U('del')?ids={$vv['id']}" title="删除">删除</a></td>
+														<td class="center"><a href="edit?id={{$vv['id']}}">修改</a>&nbsp;<a class="del" href="javascript:;" val="{{url('admin/menu/del')}}?ids={$vv['id']" title="删除">删除</a></td>
 													</tr>
 													@endforeach
 												@endif

@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta charset="utf-8" />
-		<title>{$current['title']}-{$Think.CONFIG.title}</title>
-
-		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
-		<meta name="description" content="{$Think.CONFIG.description}" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
-		<include file="Public/head" />
-   </head>
-
-	<body class="no-skin">
-		<include file="Public/header" />
+@extends('layouts.admin')
+@section('content')
+	@include('layouts.header')
 		<div class="main-container" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
 			</script>
 
-			<include file="Public/sidebar" />
+			@include('layouts.sidebar')
 			<div class="main-content">
 				<div class="main-content-inner">
 					<!-- #section:basics/content.breadcrumbs -->
@@ -33,19 +20,21 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-									<form class="form-horizontal" action="{:U('update')}" method="post">
+									<form class="form-horizontal" action="{{url('admin/menu/store')}}" method="post">
+									{{csrf_field()}}
 									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 上级菜单 </label>
-										<input name="id" value="0" type="hidden">
 										<div class="col-sm-9">
 										<select id="pid" name="pid" class="rcol-xs-10 col-sm-5">
 												<option value="0">顶级菜单</option>
-											<volist name="option" id="v">
-												<option value="{$v.id}">{$v['title']}</option>
-												<volist name="v.children" id="vv">
-												<option value="{$vv.id}">&nbsp;&nbsp;┗━{$vv['title']}</option>
-												</volist>
-											</volist>
+											@foreach($menuTree as $list)
+												<option value="{{$list['id']}}">{{$list['title']}}</option>
+												@if(isset($list['children']))
+													@foreach($list['children'] as $childMenu)
+													<option value="{{$childMenu['id']}}">&nbsp;&nbsp;┗━{{$childMenu['title']}}</option>
+													@endforeach
+												@endif
+											@endforeach
 										</select>
 										<span class="help-inline col-xs-12 col-sm-7">
 												<span class="middle"></span>

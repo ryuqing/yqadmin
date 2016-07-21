@@ -16,5 +16,61 @@
 <body class="no-skin">
 @yield('content')
 @include('layouts.footerjs')
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function(){
+			$(".check-all").click(function(){
+				$(".aids").prop("checked", this.checked);
+			});
+			$(".aids").click(function(){
+				var option = $(".ids");
+				option.each(function(i){
+					if(!this.checked){
+						$(".check-all").prop("checked", false);
+						return false;
+					}else{
+						$(".check-all").prop("checked", true);
+					}
+				});
+			});
+			$("#submit").click(function(){
+				bootbox.confirm({
+					title: "系统提示",
+					message: "是否要删除所选文章？", 
+					callback:function(result){
+						if(result){
+							$("#form").submit();
+						}
+					},
+					buttons: {
+						"cancel" : {"label" : "取消"},
+						"confirm" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+					}
+				});
+			});
+			$(".del").click(function(){
+				var url = $(this).attr('val');
+				bootbox.confirm({
+					title: "系统提示",
+					message: "是否要该文章？", 
+					callback:function(result){
+						if(result){
+							window.location.href = url;
+						}
+					},
+					buttons: {
+						"cancel" : {"label" : "取消"},
+						"confirm" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+					}
+				});
+			});
+		})
+		</script>
 </body>
 </html>
